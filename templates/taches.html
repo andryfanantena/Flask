@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block titre %}{{ super() }} - Liste{% endblock %}
+{% block contenu %}
+<h1>Mes tâches</h1> 
+<ul>
+    {% for t in taches %}
+        <li>
+            {% if t.terminee %}
+                <s>{{ loop.index }} {{ t.titre }}</s>
+            {% else %}
+                {{ loop.index }} {{ t.titre }}
+            {% endif %}
+                ({{ t.priorite }})
+        </li>
+    {% endfor %}
+</ul>
+<p>{{ inconnue }}</p>
+<p>{{ taches|rejectattr("terminee")|list|length }} tâche(s) restante(s)</p>
+{% endblock %} 
+
+<h1>Hello world</h1>

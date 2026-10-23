@@ -99,3 +99,8 @@ par contre url et la méthode sont similaire:
 
 quand j'ai mis request.form["titr"] il n'a pas reconnu "titr"
 
+6. quand j'ai retirer la méthohde post de ajouter.html, dans la barre du navigateur il a affciher http://127.0.0.1:5000/taches/ajouter?titre=azertyui&priorite=normale
+
+Expliqué :
+On redirige après un formulaire traité car sans cela F5 rejoue le POST et crée un doublon. Avec redirect, le serveur répond 302 et le navigateur fait un GET ; F5 ne rejoue que ce GET.
+request.form.get("titre") renvoie None (ou la valeur par défaut) si le champ est absent ; request.form["titre"] provoque une erreur 400 Bad Request. Les données d'un formulaire en GET partent dans l'URL, après le ?, visibles dans la barre d'adresse et conservées dans l'historique.
